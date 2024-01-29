@@ -4,10 +4,12 @@ import fs from "fs"
 
           
 cloudinary.config({ 
-  cloud_name: process.env.CLOUDINARY_NAME, 
-  api_key: process.env.CLOUDINARY_API_KEY, 
-  api_secret: process.env.CLOUDINARY_API_SECRET 
+  cloud_name:"usman-choudhary" , 
+  api_key: "235542998375683", 
+  api_secret: "kY2PRA04I1Ttbm-_KnhZl4i3O_0" 
 });
+
+//console.log(  process.env.CLOUDINARY_NAME +" other api key " + process.env.CLOUDINARY_API_KEY +" api secret " + process.env.CLOUDINARY_API_SECRET ); 
 
 const uploadOnCloudinary = async (localFilePath)=>{
 try {
@@ -18,10 +20,11 @@ try {
     })
     // file uploaded successfully on the cloudinary 
     console.log("the file has been uploaded successfully "+response.url);
+    fs.unlinkSync(localFilePath)
     return response
 } catch (error) {
     fs.unlinkSync(localFilePath) // this file is used to unlink the file from the local server 
-
+//console.log(" there is an error and not file uploaded on the cloudinary ");
 }
 
 }

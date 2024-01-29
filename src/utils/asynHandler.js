@@ -1,5 +1,5 @@
 const asyncHandler = (requestHandler)=>{
-    (req,res,next)=>{
+   return (req,res,next)=>{
         Promise.resolve(requestHandler(req,res,next))
         .catch((err)=>next(err))
     }
@@ -9,7 +9,7 @@ const asyncHandler = (requestHandler)=>{
 
 
 
-export { asyncHandler ,asyncdatabase};
+export { asyncHandler };
 
 
 // Higher order functions are the functions that accept the another funciton in their peramettiers and run that funciton like map,forEach,filter these are the example of the higher order functions 

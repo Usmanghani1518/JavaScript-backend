@@ -4,9 +4,9 @@ import fs from "fs"
 
           
 cloudinary.config({ 
-  cloud_name:"usman-choudhary" , 
-  api_key: "235542998375683", 
-  api_secret: "kY2PRA04I1Ttbm-_KnhZl4i3O_0" 
+  cloud_name:"usman-choudhary" || `${process.env.CLOUDINARY_NAME}` , 
+  api_key: "235542998375683" || `${process.env.CLOUDINARY_API_KEY}`, 
+  api_secret: "kY2PRA04I1Ttbm-_KnhZl4i3O_0" || `${process.env.CLOUDINARY_API_SECRET }`
 });
 
 //console.log(  process.env.CLOUDINARY_NAME +" other api key " + process.env.CLOUDINARY_API_KEY +" api secret " + process.env.CLOUDINARY_API_SECRET ); 

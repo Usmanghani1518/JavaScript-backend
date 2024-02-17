@@ -70,7 +70,7 @@ userSchcema.methods.generateAccessToken= function (){
 	email: this.email,
 	username :this.username,
 	fullName :this.fullname
-
+	
 },
 
 	 process.env.ACCESS_TOKEN_SECRET

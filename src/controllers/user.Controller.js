@@ -145,7 +145,10 @@ const loginUser = asyncHandler(async (req,res)=>{
 
 const logedOutUser = asyncHandler(async (req,res)=>{
 	await User.findByIdAndUpdate(req.user._id,
-		{$set:{refreshToken:undefined}},
+		{
+			$unset:{
+				refreshToken:1}
+		},
 		{new:true},
 		)
 		const options ={
@@ -229,7 +232,7 @@ const updateUserDetails = asyncHandler(async(req,res)=>{
 		throw new ApiError(401,"fullname and email is required to updat it")
 	}
 
-	const user = User.findByIdAndUpdate(
+	const user = await User.findByIdAndUpdate(
 		req.user?._id,
 		{
 			$set:{
@@ -268,12 +271,13 @@ const updateUserAvatar= asyncHandler(async(req,res)=>{
 	.status(200)
 	.json(new apiResponse(200,user,"The user avatar is updated successfully "))
 })
+
 const updateUserCoverImage= asyncHandler(async(req,res)=>{
 	const coverImageLocalPath = req.file?.path
 	if (!coverImageLocalPath) {
 		throw new ApiError(400,"the files is required for upadate")
 	}
-	const coverImage=await uploadOnCloudinary(avatarLocalPath)
+	const coverImage=await uploadOnCloudinary(coverImageLocalPath)
 	if (!coverImage.url) {
 		throw new ApiError(403,"the file doesnot updated  on the cloudinary ")
 	}
